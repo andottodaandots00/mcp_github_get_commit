@@ -16,13 +16,13 @@
   "github.copilot.chat.customInstructionsInSystemMessage": false,
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
   "github.copilot.chat.promptFileContextProvider.enabled": true,
-  "chat.instructionsFilesLocations": {
-    ".github/instructions/eldonInstructImplement.instructions.md": true,
-    ".github/instructions": false
-  },
-  "chat.promptFilesLocations": {
-    ".github/prompts/finishingtask.prompt.md": true
-  },
+  // "chat.instructionsFilesLocations": {
+  //   ".github/instructions/eldonInstructImplement.instructions.md": true,
+  //   ".github/instructions": false
+  // },
+  // "chat.promptFilesLocations": {
+  //   ".github/prompts/finishingtask.prompt.md": true
+  // },
   "chat.customAgentInSubagent.enabled": false,
   "github.copilot.chat.agent.currentEditorContext.enabled": true,
   "github.copilot.chat.projectLabels.expanded": false,
