@@ -11,15 +11,15 @@
   "github.copilot.chat.agent.autoFix": true,
   "github.copilot.chat.codesearch.enabled": true,
   "github.copilot.chat.codesearch.agent.enabled": true,
-  "telemetry.feedback.enabled": false,
+  "telemetry.feedback.enabled": true,
   "github.copilot.chat.omitBaseAgentInstructions": true,
   "github.copilot.chat.customInstructionsInSystemMessage": false,
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  "github.copilot.chat.promptFileContextProvider.enabled": true,
-  // "chat.instructionsFilesLocations": {
-  //   ".github/instructions/eldonInstructImplement.instructions.md": true,
-  //   ".github/instructions": false
-  // },
+  "github.copilot.chat.promptFileContextProvider.enabled": false,
+  "chat.instructionsFilesLocations": {
+    ".github/copilot-instructions.md": true,
+    ".github/instructions": false
+  },
   // "chat.promptFilesLocations": {
   //   ".github/prompts/finishingtask.prompt.md": true
   // },
@@ -32,18 +32,37 @@
   "github.copilot.chat.reviewSelection.enabled": false,
   "github.copilot.chat.reviewAgent.enabled": true,
   "chat.useAgentSkills": false,
-  "github.copilot.chat.anthropic.useMessagesApi": true,
+
+
+
+  // ------------- THE BEST FOR DEBUGGING AND IMPLEMENTATION FOR GROK CODE FAST 1--------------
+  // "github.copilot.chat.anthropic.useMessagesApi": true,
+  // "chat.agent.thinkingStyle": "fixedScrolling",
+  // "chat.agent.thinking.collapsedTools": "withThinking",
+  // "chat.agent.thinking.generateTitles": true,
+  // "github.copilot.chat.anthropic.thinking.budgetTokens": 2048,
+  // "github.copilot.chat.useResponsesApi": true,
+  // "github.copilot.chat.responsesApiReasoningSummary": "detailed",
+  // "github.copilot.chat.responsesApiReasoningEffort": "low",
+  // "github.copilot.chat.useResponsesApiTruncation": false,
+  // "github.copilot.chat.agent.temperature": 0.20000500001,
+
+
+
+
+  "github.copilot.chat.anthropic.useMessagesApi": false,
   "chat.agent.thinkingStyle": "fixedScrolling",
   "chat.agent.thinking.collapsedTools": "withThinking",
   "chat.agent.thinking.generateTitles": true,
-  "github.copilot.chat.anthropic.thinking.budgetTokens": 2048,
-  "github.copilot.chat.useResponsesApi": true,
+
+  "github.copilot.chat.anthropic.thinking.budgetTokens": 32000,
+  "github.copilot.chat.useResponsesApi": false,
   "github.copilot.chat.responsesApiReasoningSummary": "detailed",
-  "github.copilot.chat.responsesApiReasoningEffort": "low",
+  "github.copilot.chat.responsesApiReasoningEffort": "high",
+
   "github.copilot.chat.useResponsesApiTruncation": false,
-  "github.copilot.chat.agent.temperature": 0.20000500001,
-  "github.copilot.chat.instantApply.shortContextModelName": "gpt-4o-instant-apply-full-ft-v66-short",
-  "github.copilot.chat.instantApply.shortContextLimit": 8000,
+  "github.copilot.chat.agent.temperature": 0.40000500001,
+
   "github.copilot.chat.summarizeAgentConversationHistory.enabled": true,
   "github.copilot.chat.agentHistorySummarizationForceGpt41": true,
   "github.copilot.chat.agentHistorySummarizationMode": "full",
@@ -106,7 +125,7 @@
   "files.trimTrailingWhitespace": true,
   "[markdown]": {
     "files.trimTrailingWhitespace": false,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "editor.rulers": [
     100
@@ -205,7 +224,7 @@
   "inlineChat.finishOnType": false,
   "github.copilot.chat.inlineChat.selectionRatioThreshold": 0,
   "github.copilot.chat.projectLabels.inline": false,
-  "editor.inlineSuggest.enabled": false,
+  "editor.inlineSuggest.enabled": true,
   "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": false,
   "github.copilot.chat.edits.suggestRelatedFilesForTests": false,
   "github.copilot.chat.edits.suggestRelatedFilesFromGitHistory": false,
@@ -342,6 +361,8 @@
 "editor.unicodeHighlight.ambiguousCharacters": true,
 "editor.unicodeHighlight.nonBasicASCII": false,
 "editor.unicodeHighlight.includeComments": true,
-"github.copilot.chat.byok.ollamaEndpoint": ""
+"github.copilot.chat.byok.ollamaEndpoint": "",
+"github.copilot.chat.agentHistorySummarizationWithPromptCache": true,
+"github.copilot.chat.instantApply.shortContextModelName": "gpt-4o-instant-apply-full-ft-v66-short"
 
 }

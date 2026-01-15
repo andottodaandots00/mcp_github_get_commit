@@ -1,79 +1,77 @@
-# [PROJECT_NAME] Project Context
-<!-- Example: SpecKit, TaskFlow, MyApp -->
+# Document Processing & RAG Pipeline Project
+
+> **Governance**: This project is governed by the principles defined in [`specs/memory/constitution.md`](memory/constitution.md). All development practices, architectural decisions, and code contributions must comply with the constitution's core principles: Reliability First, Resource Responsibility, Configuration Over Code, Observable Operations, and Modular Design.
 
 ## Purpose
-[DESCRIBE_PROJECT_PURPOSE_AND_GOALS]
-<!-- Example: Provide specification-driven development workflow for engineering teams with automated validation gates -->
+Automated document processing system that converts various document formats (PDFs, images, tables) into structured text, enhances them using gradient-based techniques, and loads them into a RAG (Retrieval Augmented Generation) pipeline. The system leverages GPU acceleration for performance-critical operations and provides parallel processing capabilities for handling large document batches.
 
 ## Tech Stack
-- [TECHNOLOGY_1]
-- [TECHNOLOGY_2]
-- [TECHNOLOGY_3]
-<!-- Example: PowerShell 7+, Markdown, Git, VS Code -->
+- Python 3.8+
+- PyTorch (GPU acceleration)
+- LangChain (RAG pipeline)
+- OpenCV / PIL (Image processing)
+- pandas (Table processing)
+- CUDA (GPU management)
+- pytest (Testing framework)
 
 ## Project Conventions
 
 ### Code Style
-[DESCRIBE_CODE_STYLE_PREFERENCES_FORMATTING_NAMING]
-<!-- Example: 
-- File naming: kebab-case for scripts, PascalCase for modules
+- File naming: snake_case for all Python modules
+- Class naming: PascalCase (e.g., `GradientEnhancer`, `ImageProcessor`)
+- Function naming: snake_case with descriptive verbs (e.g., `process_image`, `convert_table`)
 - Indentation: 4 spaces, no tabs
-- Line length: Max 120 characters
-- Function naming: Verb-Noun pattern (e.g., Get-Specification, Invoke-Validation)
--->
+- Line length: Max 100 characters (PEP 8 compliant)
+- Type hints: Required for all public functions and methods
+- Docstrings: Google-style docstrings for all classes and functions
 
 ### Architecture Patterns
-[DOCUMENT_ARCHITECTURAL_DECISIONS_AND_PATTERNS]
-<!-- Example:
-- Spec-first development: All features begin with formal specification
-- Dual-state model: Truth in capability folders, proposals in changes/
-- Agent-based workflow: Each phase handled by dedicated agent
-- File-based persistence: All state in human-readable Markdown
--->
+- Pipeline-based processing: Sequential transformation stages in [`core/pipeline.py`](core/pipeline.py)
+- Singleton GPU manager: Centralized GPU resource allocation via [`gpu/manager.py`](gpu/manager.py)
+- Configuration-driven: All settings externalized in [`config/settings.py`](config/settings.py)
+- Modular processors: Each document type has dedicated processor (image, table, gradient)
+- Parallel execution: Multi-processing support via [`core/parallel.py`](core/parallel.py)
+- RAG integration: Document loading and retrieval in [`core/rag_pipeline.py`](core/rag_pipeline.py)
 
 ### Testing Strategy
-[EXPLAIN_TESTING_APPROACH_AND_REQUIREMENTS]
-<!-- Example:
-- Every requirement must have testable scenarios in WHEN/THEN format
-- Validation gates at specification, implementation, and archive phases
-- Automated checks via validate.ps1 script
-- Manual review required before archival
--->
+- Unit tests for each core module in [`tests/`](tests/) directory
+- Phase-based testing: [`test_phase1.py`](test_phase1.py) for incremental validation
+- GPU mock testing: Tests must run without GPU hardware dependencies
+- Integration tests: End-to-end pipeline validation
+- Coverage target: 80% minimum for core modules
+- Test naming: `test_<module>_<function>_<scenario>`
 
 ### Git Workflow
-[DESCRIBE_BRANCHING_STRATEGY_AND_COMMIT_CONVENTIONS]
-<!-- Example:
-- Branch naming: feature/*, fix/*, refactor/*
-- Commit format: <type>(<scope>): <subject>
-- Merge strategy: Squash merges to main
-- Tag releases: v1.0.0 format
--->
+- Branch naming: `feature/<name>`, `fix/<issue>`, `refactor/<component>`
+- Commit format: `<type>: <description>` (e.g., `feat: add gradient enhancement`, `fix: GPU memory leak`)
+- Merge strategy: Pull requests with code review required
+- Tag releases: Semantic versioning (v1.0.0)
+- Requirements split: [`requirements.txt`](requirements.txt) for base, [`requirements_gpu.txt`](requirements_gpu.txt) for GPU features
 
 ## Domain Context
-[ADD_DOMAIN_SPECIFIC_KNOWLEDGE_FOR_AI_ASSISTANTS]
-<!-- Example:
-- Capability: Deployed feature specification in specs/<name>/
-- Change: Active proposal in specs/changes/<id>/
-- Delta: Incremental modification to existing capability
-- Gate: Validation checkpoint before workflow transition
-- Constitution: Governance document in specs/memory/constitution.md
--->
+- **Converter**: Module that transforms document formats ([`core/converter.py`](core/converter.py))
+- **Gradient Client**: Interface for gradient-based model operations ([`core/gradient_client.py`](core/gradient_client.py))
+- **Gradient Enhancer**: Quality improvement processor ([`core/gradient_enhancer.py`](core/gradient_enhancer.py))
+- **Image Processor**: OCR and image document handler ([`core/image_processor.py`](core/image_processor.py))
+- **Table Processor**: Structured data extraction ([`core/table_processor.py`](core/table_processor.py))
+- **RAG Pipeline**: Retrieval augmented generation integration ([`core/rag_pipeline.py`](core/rag_pipeline.py))
+- **GPU Manager**: Resource allocation and monitoring ([`gpu_manager.py`](gpu_manager.py), [`gpu/manager.py`](gpu/manager.py))
+- **LangChain Loader**: Document loading utilities ([`core/langchain_loader.py`](core/langchain_loader.py))
 
 ## Important Constraints
-[LIST_TECHNICAL_BUSINESS_REGULATORY_CONSTRAINTS]
-<!-- Example:
-- No placeholders (TODO, TBD, [INSERT]) in final deliverables
-- All specifications must pass validation before implementation
-- Markdown must be human-readable and AI-parseable
-- Version control required for all artifacts
-- No external dependencies for core workflow
--->
+- GPU availability must be checked before GPU-dependent operations
+- Memory management critical: Large documents must be processed in chunks
+- All GPU resources must be explicitly released after use
+- Configuration validation required at startup via [`config_models.py`](config_models.py)
+- No hardcoded file paths: Use configuration system
+- Batch processing must support resume from failure
+- Thread-safe operations required for parallel processing
+- All external API calls must have timeout and retry logic
 
 ## External Dependencies
-[DOCUMENT_KEY_EXTERNAL_SERVICES_APIS_SYSTEMS]
-<!-- Example:
-- Git 2.30+ for version control
-- PowerShell 7+ for automation scripts
-- VS Code (recommended) with Markdown extensions
-- GitHub (optional) for issue tracking via speckit.taskstoissues
--->
+- CUDA Toolkit 11.0+ for GPU operations
+- PyTorch with CUDA support (see [`requirements_gpu.txt`](requirements_gpu.txt))
+- LangChain framework for RAG capabilities
+- OpenAI API (optional) for gradient client operations
+- File system access for document I/O
+- Sufficient GPU memory (4GB+ recommended) for batch processing
